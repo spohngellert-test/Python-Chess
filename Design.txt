@@ -1,12 +1,38 @@
 Position:
 	int x - x coordinate of the position (0-7). Represents a-h on the board.
-	int y - y coordinate of hte position (0-7). Represents 1-8 on the board.
+	int y - y coordinate of the position (0-7). Represents 1-8 on the board.
 
 Piece:
 	Position pos - Position of the piece on the board.
 	boolean isWhite - Whether the piece is white or black.
 
 Piece Subclasses (Pawn, Knight, Bishop, Rook, Queen, King):
-	getAllMoves(self) - Gets all the possible moves of the given piece, given its position.
-	Returns a list of Position, where the piece could move to.
-	get
+	getAllMoves(self)
+		Gets all the possible moves of the given piece, given its position.
+		Returns a list of Position, where the piece could move to.
+
+	getLegalMoves(self, white_pieces, black_pieces)
+		Gets all the legal moves for a piece, given the current pieces on
+		the board. For example, if a piece is in front of a pawn, it will
+		not be included in the legal moves. Returns a list of positions that are legal moves.
+
+Pawn:
+	May need special behaviors for en passant and pawn advancement to final rank. This may be within the board, or within the pawn. Undecided.
+
+Board:
+	white_king - Reference to the white king, useful for validating check.
+	black_king - Reference to the black king, useful for validating check.
+	white_pieces - Dictionary of position -> piece. Contains all white pieces, including king.
+	black_pieces - Dictionary of position -> piece. Contains all black pieces, including king.
+
+Utility Methods:
+
+	inCheck(white_pieces, black_pieces, king)
+		Checks whether white/black is currently in check based on the current board. Based on whether it is the black king or the white king.
+
+	inCheckmate(white_pieces, black+pieces, king)
+		Checks whether white/black is currently in checkmate based on the current board. Based on whether it is the black king or the white king.
+
+
+
+
