@@ -1,0 +1,12 @@
+Position:
+	int x - x coordinate of the position (0-7). Represents a-h on the board.
+	int y - y coordinate of hte position (0-7). Represents 1-8 on the board.
+
+Piece:
+	Position pos - Position of the piece on the board.
+	boolean isWhite - Whether the piece is white or black.
+
+Piece Subclasses (Pawn, Knight, Bishop, Rook, Queen, King):
+	getAllMoves(self) - Gets all the possible moves of the given piece, given its position.
+	Returns a list of Position, where the piece could move to.
+	get

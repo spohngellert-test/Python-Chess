@@ -29,7 +29,7 @@ class Pawn(Piece):
 		super().__init__(pos, isWhite)
 
 	#Gets all the possible moves of a pawn based on its current position
-	def getPossibleMoves(self):
+	def getAllMoves(self):
 		moves = []
 		if(self.pos.x > 0):
 			takeLeft = Position(self.pos.x - 1, self.pos.y + 1)
@@ -52,7 +52,7 @@ class TestPawnMethods(unittest.TestCase):
     def test_pawn_get_possible_moves_no_left(self):
     	'''
     	pawn = Pawn()
-    	moves = pawn.getPossibleMoves()
+    	moves = pawn.getAllMoves()
     	expected_moves = []
     	expected_moves.append(Position(0, 1))
     	expected_moves.append(Position(1, 1))
