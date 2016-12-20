@@ -28,6 +28,10 @@ Board:
 	black_king - Reference to the black king, useful for validating check.
 	white_pieces - Dictionary of position -> piece. Contains all white pieces, including king.
 	black_pieces - Dictionary of position -> piece. Contains all black pieces, including king.
+	whites_turn - Whether it is black or white's turn
+	player_white - The player for white
+	player_black - The player for black
+	board_cache - List of white_pieces/black_pieces tuples that will be used to determine 3-fold repetition.
 
 Utility Methods:
 
@@ -41,5 +45,7 @@ Utility Methods:
 Draw by 3-fold repetition:
 	Maintain a list of previous boards. If a board is contained in there twice, and is reached in the next position, then the option to draw is given to both players.
 
-
+Player:
+	isWhite - Whether the player is black or white
+	isHuman - Whether the player is a human or a CPU. Before engine is implemented, player will always be human.
 
