@@ -10,6 +10,9 @@ class Position:
 	def to_string(self):
 		return "({0}, {1})".format(self.x, self.y)
 
+	def __eq__(self, other):
+		return self.__dict__ == other.__dict__
+
 
 class Piece:
 
@@ -50,17 +53,30 @@ class Pawn(Piece):
 class TestPawnMethods(unittest.TestCase):
 
     def test_pawn_get_possible_moves_no_left(self):
-    	'''
     	pawn = Pawn()
     	moves = pawn.getAllMoves()
     	expected_moves = []
     	expected_moves.append(Position(0, 1))
     	expected_moves.append(Position(1, 1))
-    	self.assertEqual(moves, expected_moves)
-    	'''
-    	pos1 = Position()
-    	pos2 = Position()
-    	self.assertEqual(pos1, pos2)
+    	self.assertListEqual(moves, expected_moves)
+
+    def test_pawn_get_possible_moves_no_right(self):
+    	pawn = Pawn(Position(7, 2), False)
+    	moves = pawn.getAllMoves()
+    	expected_moves = []
+    	expected_moves.append(Position(6, 3))
+    	expected_moves.append(Position(7, 3))
+    	self.assertListEqual(moves, expected_moves)
+
+    def test_pawn_get_possible_moves_both(self):
+    	pawn = Pawn(Position(5, 4))
+    	moves = pawn.getAllMoves()
+    	expected_moves = []
+    	expected_moves.append(Position(4, 5))
+    	expected_moves.append(Position(5, 5))
+    	expected_moves.append(Position(6, 5))
+    	self.assertListEqual(moves, expected_moves)
+
         
 
 if __name__ == '__main__':

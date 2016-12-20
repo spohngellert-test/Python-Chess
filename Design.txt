@@ -19,6 +19,10 @@ Piece Subclasses (Pawn, Knight, Bishop, Rook, Queen, King):
 Pawn:
 	May need special behaviors for en passant and pawn advancement to final rank. This may be within the board, or within the pawn. Undecided.
 
+King/Rook:
+	Will need boolean for whether the piece has moved for implementing castling.
+
+
 Board:
 	white_king - Reference to the white king, useful for validating check.
 	black_king - Reference to the black king, useful for validating check.
@@ -33,6 +37,9 @@ Utility Methods:
 	inCheckmate(white_pieces, black+pieces, king)
 		Checks whether white/black is currently in checkmate based on the current board. Based on whether it is the black king or the white king.
 
+
+Draw by 3-fold repetition:
+	Maintain a list of previous boards. If a board is contained in there twice, and is reached in the next position, then the option to draw is given to both players.
 
 
 
