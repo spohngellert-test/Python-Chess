@@ -34,13 +34,23 @@ class Pawn(Piece):
 	#Gets all the possible moves of a pawn based on its current position
 	def getAllMoves(self):
 		moves = []
+		y_factor = 1
+		if not self.isWhite:
+			y_factor = -1
+		#Checking for whether pawn is on left side of board
 		if(self.pos.x > 0):
-			takeLeft = Position(self.pos.x - 1, self.pos.y + 1)
+			takeLeft = Position(self.pos.x - 1, self.pos.y + y_factor)
 			moves.append(takeLeft)
-		forwards = Position(self.pos.x, self.pos.y + 1)
+		#Straight forwards
+		forwards = Position(self.pos.x, self.pos.y + y_factor)
 		moves.append(forwards)
+		#Move forwards 2
+		if((self.pos.y == 1 and self.isWhite) or (self.pos.y == 6 and (not self.isWhite))):
+			forwards_two = Position(self.pos.x, self.pos.y + (y_factor * 2))
+			moves.append(forwards_two)
+		#Checking whether pawn is on right side of board
 		if(self.pos.x < 7):
-			takeRight = Position(self.pos.x + 1, self.pos.y + 1)
+			takeRight = Position(self.pos.x + 1, self.pos.y + y_factor)
 			moves.append(takeRight)
 		return moves
 
@@ -61,7 +71,7 @@ class TestPawnMethods(unittest.TestCase):
     	self.assertListEqual(moves, expected_moves)
 
     def test_pawn_get_possible_moves_no_right(self):
-    	pawn = Pawn(Position(7, 2), False)
+    	pawn = Pawn(Position(7, 2))
     	moves = pawn.getAllMoves()
     	expected_moves = []
     	expected_moves.append(Position(6, 3))
